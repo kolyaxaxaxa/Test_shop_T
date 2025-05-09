@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Иконки Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .card {
+            transition: transform 0.2s;
+            height: 100%;
+        }
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .card-img-top {
+            height: 200px;
+            object-fit: contain;
+            padding: 10px;
+        }
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Главное меню -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Магазин</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'main:product_list' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Категории
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for category in categories %}
+                            <li><a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+<!--                            <li><a class="dropdown-item" href="#">Одежда</a></li>-->
+<!--                            <li><a class="dropdown-item" href="#">Дом и сад</a></li>-->
+                            {% endfor %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'main:product_list' %}">Все категории</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">О нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Контакты</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Акции</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-light me-2"><i class="bi bi-cart"></i> Корзина</a>
+                    <a href="#" class="btn btn-light"><i class="bi bi-person"></i> Войти</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+{% block content %} {% endblock %}
+
+    <!-- Подвал -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>О магазине</h5>
+                    <p>Краткое описание магазина и его преимуществ.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Контакты</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-geo-alt"></i> Адрес: г. Москва, ул. Примерная, 123</li>
+                        <li><i class="bi bi-telephone"></i> Телефон: +7 (123) 456-78-90</li>
+                        <li><i class="bi bi-envelope"></i> Email: info@example.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Мы в соцсетях</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-2"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-white me-2"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-white me-2"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-youtube fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="mb-0">© 2023 Интернет-магазин. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
