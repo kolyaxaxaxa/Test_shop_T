@@ -15,7 +15,7 @@ build/
 develop-eggs/
 dist/
 downloads/
-products/
+# products/
 eggs/
 .eggs/
 lib/
